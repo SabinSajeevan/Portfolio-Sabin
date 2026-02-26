@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_sabin/constants/colors.dart';
@@ -20,16 +19,16 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class HomeState extends ConsumerState<Home> {
-  bool isDarkMode = true;
+  bool isDarkMode = false;
   final ScrollController _controller = ScrollController();
 
   @override
   void initState() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        isDarkMode = Theme.of(context).brightness == Brightness.dark;
-      });
-    });
+    // SchedulerBinding.instance.addPostFrameCallback((_) {
+    //   setState(() {
+    //     isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    //   });
+    // });
 
     super.initState();
   }
@@ -109,7 +108,7 @@ class HomeState extends ConsumerState<Home> {
 
                     IconButton.filled(
                       style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith(
+                          backgroundColor: WidgetStateProperty.resolveWith(
                         (states) =>
                             isDarkMode ? Colors.white70 : Colors.black45,
                       )),

@@ -21,7 +21,7 @@ class MainApp extends ConsumerWidget {
             ? ThemeClass.darkTheme
             : ThemeClass.lightTheme,
         darkTheme: ThemeClass.darkTheme,
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
         builder: (context, child) => ResponsiveBreakpoints.builder(
               child: child!,
               breakpoints: [

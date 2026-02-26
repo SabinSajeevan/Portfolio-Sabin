@@ -24,32 +24,48 @@ class ThemeClass {
     colorScheme: const ColorScheme.light()
         .copyWith(primary: _themeClass.lightPrimaryColor),
     textTheme: GoogleFonts.sourceSans3TextTheme().copyWith(
-        headlineSmall: const TextStyle(
-            fontSize: 28.0,
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-            color: textGreyDark),
-        headlineMedium: const TextStyle(
-            fontSize: 28.0,
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-            color: textPrimary),
-        headlineLarge: const TextStyle(
-            fontWeight: FontWeight.bold,
-            height: 1.2,
-            fontSize: 46,
-            color: textPrimary),
-        bodyMedium: const TextStyle(
-            fontSize: 18,
-            color: textGreyDark,
-            height: 1.8,
-            fontWeight: FontWeight.w500),
-        bodyLarge: const TextStyle(
-            fontSize: 28.0,
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-            color: textCursor)),
-
+      headlineSmall: const TextStyle(
+          fontSize: 28.0,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textGreyDark),
+      headlineMedium: const TextStyle(
+          fontSize: 28.0,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textPrimary),
+      headlineLarge: const TextStyle(
+          fontWeight: FontWeight.bold,
+          height: 1.2,
+          fontSize: 46,
+          color: textPrimary),
+      bodySmall: TextStyle(
+        fontSize: 15,
+        color: textGreyDark.withValues(alpha: 0.8),
+        fontWeight: FontWeight.w500,
+        height: 1.5,
+      ),
+      bodyMedium: const TextStyle(
+          fontSize: 18,
+          color: textGreyDark,
+          height: 1.8,
+          fontWeight: FontWeight.w500),
+      bodyLarge: const TextStyle(
+          fontSize: 28.0,
+          fontWeight: FontWeight.w700,
+          height: 1.2,
+          color: textCursor),
+      titleLarge: const TextStyle(
+          fontSize: 20.0, fontWeight: FontWeight.w500, color: textGreyDark),
+      titleMedium: const TextStyle(
+          fontSize: 18.0, fontWeight: FontWeight.w500, color: textWhite),
+      titleSmall: const TextStyle(
+          fontSize: 16.0, fontWeight: FontWeight.w400, color: textGreyLight),
+      labelLarge: const TextStyle(
+          fontSize: 14.0, fontWeight: FontWeight.w400, color: textGreyDark),
+      labelMedium: const TextStyle(
+          fontSize: 12.0, fontWeight: FontWeight.w500, color: textWhite),
+    ),
     scaffoldBackgroundColor: background,
     appBarTheme: const AppBarTheme(
         backgroundColor: background,
@@ -58,25 +74,26 @@ class ThemeClass {
     // - - - - -Light Theme Elevated Button Styles - - - - -
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           const Size(double.infinity, 55),
         ),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+        backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (states) => _themeClass.lightPrimaryColor),
-        shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+        shape: WidgetStateProperty.resolveWith<OutlinedBorder>(
           (_) {
             return const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)));
           },
         ),
-        textStyle: MaterialStateProperty.resolveWith(
+        textStyle: WidgetStateProperty.resolveWith(
           (states) =>
               const TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
         ),
         foregroundColor:
-            MaterialStateProperty.all<Color>(Colors.white), //actual text color
+            WidgetStateProperty.all<Color>(Colors.white), //actual text color
       ),
     ),
+    cardTheme: const CardThemeData(color: background),
     // - - - - - - - - - - - - - - -  - - - - -
   );
 
@@ -88,24 +105,27 @@ class ThemeClass {
     // - - - - -Dark Theme Elevated Button Styles - - - - -
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           const Size(double.infinity, 55),
         ),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+        backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (states) => _themeClass.lightPrimaryColor),
-        shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
+        shape: WidgetStateProperty.resolveWith<OutlinedBorder>(
           (_) {
             return const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)));
           },
         ),
-        textStyle: MaterialStateProperty.resolveWith(
+        textStyle: WidgetStateProperty.resolveWith(
           (states) =>
               const TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
         ),
         foregroundColor:
-            MaterialStateProperty.all<Color>(Colors.white), //actual text color
+            WidgetStateProperty.all<Color>(Colors.white), //actual text color
       ),
+    ),
+    cardTheme: const CardThemeData(
+      color: Colors.white10,
     ),
     // - - - - - - - - - - - - - - -  - - - - -
 
@@ -120,6 +140,12 @@ class ThemeClass {
           fontWeight: FontWeight.w700,
           height: 1.2,
           color: textGreyLight),
+      bodySmall: TextStyle(
+        fontSize: 15,
+        color: textGreyDark.withValues(alpha: 0.8),
+        fontWeight: FontWeight.w500,
+        height: 1.5,
+      ),
       bodyMedium: const TextStyle(
           fontSize: 18,
           color: textGreyDark,

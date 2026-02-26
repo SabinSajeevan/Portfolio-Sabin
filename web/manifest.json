@@ -1,11 +1,11 @@
 {
-    "name": "Sabin Sajeevan",
-    "short_name": "Sabin Sajeevan",
+    "name": "portfolio_sabin",
+    "short_name": "portfolio_sabin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Portfolio of Sabin Sajeevan.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

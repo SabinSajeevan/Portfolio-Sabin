@@ -18,7 +18,7 @@ class _HeaderSectionState extends State<HeaderSection>
 
   String headerTitle = "Sabin Sajeevan";
   String cvURL =
-      "https://drive.google.com/file/d/1tJPcuZ2cavzrlq_8GlYv3WCozqBiUx4j/view?usp=sharing";
+      "https://drive.google.com/file/d/1DRG9q-i84mJOMa0HEkBUmq4FiC4uGMQp/view?usp=sharing";
 
   late AnimationController _welcomeController;
 

@@ -28,8 +28,7 @@ class _ContactSectionState extends State<ContactSection>
   final String phone = "tel://+918281415894";
   final String whatsappName = "+91 8281415894";
   final String whatsapp = "https://wa.me/+918281415894";
-  final String linkedin =
-      "https://www.linkedin.com/in/sabin-sajeevan-938953190";
+  final String linkedin = "https://www.linkedin.com/in/sabin-sajeevan/";
   final String instagram =
       "https://www.instagram.com/sabin_sajeevan?igsh=MTI2bnc0dzB3dWs2cQ%3D%3D&utm_source=qr";
   final String linkedinName = "Sabin Sajeevan";

@@ -1,6 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_sabin/helpers/helpers.dart';
+import 'package:portfolio_sabin/modules/expand_project_images.dart';
+import 'package:portfolio_sabin/modules/more_projects.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ProjectsSection extends StatefulWidget {
@@ -49,43 +50,43 @@ class _ProjectsSectionState extends State<ProjectsSection>
   final CarouselController moneyPoolCarouselController = CarouselController();
 
   final List<String> projectAGLImages = [
-    'assets/images/projects/agl/agl1.png',
-    'assets/images/projects/agl/agl2.png',
-    'assets/images/projects/agl/agl3.png',
-    'assets/images/projects/agl/agl4.png',
-    'assets/images/projects/agl/agl5.png',
+    'assets/images/projects/agl/agl1.webp',
+    'assets/images/projects/agl/agl2.webp',
+    'assets/images/projects/agl/agl3.webp',
+    'assets/images/projects/agl/agl4.webp',
+    'assets/images/projects/agl/agl5.webp',
   ];
 
   final List<String> projectFigma2FlutterImages = [
-    'assets/images/projects/figma2flutter/figma2flutter1.png',
-    'assets/images/projects/figma2flutter/figma2flutter2.png',
-    'assets/images/projects/figma2flutter/figma2flutter3.png',
-    'assets/images/projects/figma2flutter/figma2flutter4.png',
-    'assets/images/projects/figma2flutter/figma2flutter5.png',
+    'assets/images/projects/figma2flutter/figma2flutter1.webp',
+    'assets/images/projects/figma2flutter/figma2flutter2.webp',
+    'assets/images/projects/figma2flutter/figma2flutter3.webp',
+    'assets/images/projects/figma2flutter/figma2flutter4.webp',
+    'assets/images/projects/figma2flutter/figma2flutter5.webp',
   ];
 
   final List<String> projectScullyImages = [
-    'assets/images/projects/scully/scully1.png',
-    'assets/images/projects/scully/scully2.png',
-    'assets/images/projects/scully/scully3.png',
-    'assets/images/projects/scully/scully4.png',
-    'assets/images/projects/scully/scully5.png',
+    'assets/images/projects/scully/scully1.webp',
+    'assets/images/projects/scully/scully2.webp',
+    'assets/images/projects/scully/scully3.webp',
+    'assets/images/projects/scully/scully4.webp',
+    'assets/images/projects/scully/scully5.webp',
   ];
 
   final List<String> projectDivineBullionImages = [
-    'assets/images/projects/divine_bullion/divine_bullion1.png',
-    'assets/images/projects/divine_bullion/divine_bullion2.png',
-    'assets/images/projects/divine_bullion/divine_bullion3.png',
-    'assets/images/projects/divine_bullion/divine_bullion4.png',
-    'assets/images/projects/divine_bullion/divine_bullion5.png',
+    'assets/images/projects/divine_bullion/divine_bullion1.webp',
+    'assets/images/projects/divine_bullion/divine_bullion2.webp',
+    'assets/images/projects/divine_bullion/divine_bullion3.webp',
+    'assets/images/projects/divine_bullion/divine_bullion4.webp',
+    'assets/images/projects/divine_bullion/divine_bullion5.webp',
   ];
 
   final List<String> projectMoneyPoolImages = [
-    'assets/images/projects/moneypool/moneypool1.png',
-    'assets/images/projects/moneypool/moneypool2.png',
-    'assets/images/projects/moneypool/moneypool3.png',
-    'assets/images/projects/moneypool/moneypool4.png',
-    'assets/images/projects/moneypool/moneypool5.png',
+    'assets/images/projects/moneypool/moneypool1.webp',
+    'assets/images/projects/moneypool/moneypool2.webp',
+    'assets/images/projects/moneypool/moneypool3.webp',
+    'assets/images/projects/moneypool/moneypool4.webp',
+    'assets/images/projects/moneypool/moneypool5.webp',
   ];
 
   @override
@@ -111,128 +112,12 @@ class _ProjectsSectionState extends State<ProjectsSection>
     super.dispose();
   }
 
-  projectDetailCarousel(
-      {required CarouselController carouselController,
-      required List<String> imageList}) {
-    return ResponsiveRowColumnItem(
-      rowFlex: 6,
-      columnOrder: 1,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                IconButton.filled(
-                    onPressed: () {
-                      carouselController.previousPage();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios)),
-                Expanded(
-                  child: CarouselSlider(
-                    carouselController: carouselController,
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        enableInfiniteScroll: true,
-                        enlargeCenterPage: true,
-                        height: MediaQuery.of(context).size.height *
-                            (ResponsiveBreakpoints.of(context).isDesktop
-                                ? 0.6
-                                : 0.45),
-                        viewportFraction:
-                            ResponsiveBreakpoints.of(context).isDesktop
-                                ? 0.35
-                                : 1.0),
-                    items: imageList
-                        .map((item) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                image: DecorationImage(
-                                  image: AssetImage(item),
-                                  fit: BoxFit
-                                      .contain, // Fill the container while maintaining aspect ratio
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                ),
-                IconButton.filled(
-                    onPressed: () {
-                      carouselController.nextPage();
-                    },
-                    icon: const Icon(Icons.arrow_forward_ios)),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  projectDetailDescription(
-      {required String projectName,
-      required String projectDescription,
-      required String projectTools}) {
-    return ResponsiveRowColumnItem(
-      rowFlex: 2,
-      rowFit: FlexFit.tight,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 32, 0, 0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, bottom: 5),
-                child: Text(
-                  projectName,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontSize: 24,
-                        //   fontWeight: FontWeight.w700,
-                        //   decoration: TextDecoration.underline,
-                        //   decorationStyle: TextDecorationStyle.solid,
-                        //   //color: Colors.transparent,
-                        //   decorationColor: Colors.black38,
-                        //   shadows: [
-                        //     const Shadow(
-                        //       color: Colors.black,
-                        //       offset: Offset(0, -5),
-                        //     )
-                        //   ],
-                      ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            RichText(
-              text: TextSpan(
-                style: Theme.of(context).textTheme.bodyMedium,
-                children: [
-                  TextSpan(text: "$projectDescription\n\n"),
-                  TextSpan(
-                      text: projectTools,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.blueAccent.shade100)),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-            //  color: Colors.white,
+            //color: Colors.red,
             //borderRadius: BorderRadius.circular(4),
             //border: Border.all(color: border)
             ),
@@ -284,13 +169,22 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       : ResponsiveRowColumnType.ROW,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    projectDetailCarousel(
-                        carouselController: aglCarouselController,
-                        imageList: projectAGLImages),
-                    projectDetailDescription(
-                        projectName: aglProjectName,
-                        projectDescription: aglDescription,
-                        projectTools: aglToolsUsed)
+                    ResponsiveRowColumnItem(
+                        rowFlex: 6,
+                        columnOrder: 1,
+                        child: ProjectDetailCarousel(
+                          imageList: projectAGLImages,
+                          carouselController: aglCarouselController,
+                        )),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 2,
+                        rowFit: FlexFit.tight,
+                        child: ProjectDetailDescription(
+                          projectName: aglProjectName,
+                          projectDescription: aglDescription,
+                          projectTools: aglToolsUsed,
+                          context: context,
+                        ))
                   ]),
               const SizedBox(
                 height: 70,
@@ -301,13 +195,22 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     : ResponsiveRowColumnType.ROW,
                 rowCrossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  projectDetailDescription(
-                      projectName: figma2flutterProjectName,
-                      projectDescription: figma2flutterDescription,
-                      projectTools: figma2flutterToolsUsed),
-                  projectDetailCarousel(
-                      carouselController: figma2flutterCarouselController,
-                      imageList: projectFigma2FlutterImages),
+                  ResponsiveRowColumnItem(
+                      rowFlex: 2,
+                      rowFit: FlexFit.tight,
+                      child: ProjectDetailDescription(
+                        projectName: figma2flutterProjectName,
+                        projectDescription: figma2flutterDescription,
+                        projectTools: figma2flutterToolsUsed,
+                        context: context,
+                      )),
+                  ResponsiveRowColumnItem(
+                      rowFlex: 6,
+                      columnOrder: 1,
+                      child: ProjectDetailCarousel(
+                        imageList: projectFigma2FlutterImages,
+                        carouselController: figma2flutterCarouselController,
+                      )),
                 ],
               ),
               const SizedBox(
@@ -319,13 +222,22 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       : ResponsiveRowColumnType.ROW,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    projectDetailCarousel(
-                        carouselController: scullyCarouselController,
-                        imageList: projectScullyImages),
-                    projectDetailDescription(
-                        projectName: scullyProjectName,
-                        projectDescription: scullyDescription,
-                        projectTools: scullyToolsUsed)
+                    ResponsiveRowColumnItem(
+                        rowFlex: 6,
+                        columnOrder: 1,
+                        child: ProjectDetailCarousel(
+                          imageList: projectScullyImages,
+                          carouselController: scullyCarouselController,
+                        )),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 2,
+                        rowFit: FlexFit.tight,
+                        child: ProjectDetailDescription(
+                          projectName: scullyProjectName,
+                          projectDescription: scullyDescription,
+                          projectTools: scullyToolsUsed,
+                          context: context,
+                        ))
                   ]),
               const SizedBox(
                 height: 70,
@@ -336,13 +248,22 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       : ResponsiveRowColumnType.ROW,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    projectDetailDescription(
-                        projectName: divineBullionProjectName,
-                        projectDescription: divineBullionDescription,
-                        projectTools: divineBullionToolsUsed),
-                    projectDetailCarousel(
-                        carouselController: divineBullionCarouselController,
-                        imageList: projectDivineBullionImages),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 2,
+                        rowFit: FlexFit.tight,
+                        child: ProjectDetailDescription(
+                          projectName: divineBullionProjectName,
+                          projectDescription: divineBullionDescription,
+                          projectTools: divineBullionToolsUsed,
+                          context: context,
+                        )),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 6,
+                        columnOrder: 1,
+                        child: ProjectDetailCarousel(
+                          imageList: projectDivineBullionImages,
+                          carouselController: divineBullionCarouselController,
+                        )),
                   ]),
               const SizedBox(
                 height: 70,
@@ -353,14 +274,219 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       : ResponsiveRowColumnType.ROW,
                   rowCrossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    projectDetailCarousel(
-                        carouselController: moneyPoolCarouselController,
-                        imageList: projectMoneyPoolImages),
-                    projectDetailDescription(
-                        projectName: moneyPoolProjectName,
-                        projectDescription: moneyPoolDescription,
-                        projectTools: moneyPoolToolsUsed),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 6,
+                        columnOrder: 1,
+                        child: ProjectDetailCarousel(
+                          imageList: projectMoneyPoolImages,
+                          carouselController: moneyPoolCarouselController,
+                        )),
+                    ResponsiveRowColumnItem(
+                        rowFlex: 2,
+                        rowFit: FlexFit.tight,
+                        child: ProjectDetailDescription(
+                          projectName: moneyPoolProjectName,
+                          projectDescription: moneyPoolDescription,
+                          projectTools: moneyPoolToolsUsed,
+                          context: context,
+                        ))
                   ]),
+              const SizedBox(
+                height: 70,
+              ),
+              MoreProjects()
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Padding(
+              //       padding: EdgeInsets.only(
+              //           top: ResponsiveBreakpoints.of(context).isMobile
+              //               ? 45
+              //               : 80),
+              //       child: TextButton(
+              //         onPressed: () {},
+              //         child: Text("Show More",
+              //             style: Theme.of(context)
+              //                 .textTheme
+              //                 .bodyMedium!
+              //                 .copyWith(color: primary)),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ]));
+  }
+}
+
+class ProjectDetailDescription extends StatelessWidget {
+  const ProjectDetailDescription(
+      {super.key,
+      required this.context,
+      required this.projectName,
+      required this.projectDescription,
+      required this.projectTools});
+
+  final BuildContext context;
+  final String projectName;
+  final String projectDescription;
+  final String projectTools;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 32, 0, 0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, bottom: 5),
+              child: Text(
+                projectName,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 24,
+                      //   fontWeight: FontWeight.w700,
+                      //   decoration: TextDecoration.underline,
+                      //   decorationStyle: TextDecorationStyle.solid,
+                      //   //color: Colors.transparent,
+                      //   decorationColor: Colors.black38,
+                      //   shadows: [
+                      //     const Shadow(
+                      //       color: Colors.black,
+                      //       offset: Offset(0, -5),
+                      //     )
+                      //   ],
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          RichText(
+            text: TextSpan(
+              style: Theme.of(context).textTheme.bodyMedium,
+              children: [
+                TextSpan(text: "$projectDescription\n\n"),
+                TextSpan(
+                    text: projectTools,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.blueAccent.shade100)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProjectDetailCarousel extends StatefulWidget {
+  const ProjectDetailCarousel(
+      {super.key, required this.imageList, required this.carouselController});
+  final List<String> imageList;
+  final CarouselController carouselController;
+  @override
+  ProjectDetailCarouselState createState() => ProjectDetailCarouselState();
+}
+
+class ProjectDetailCarouselState extends State<ProjectDetailCarousel> {
+  double _itemExtent = 250; // Size of each carousel item
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (mounted) {
+        setState(() {
+          _itemExtent = ResponsiveBreakpoints.of(context).isDesktop
+              ? MediaQuery.of(context).size.width * 0.17
+              : MediaQuery.of(context).size.width * 0.58;
+        });
+      }
+    });
+    super.initState();
+  }
+
+  void _moveForward() {
+    widget.carouselController.animateTo(
+      widget.carouselController.offset + _itemExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _moveBackward() {
+    widget.carouselController.animateTo(
+      widget.carouselController.offset - _itemExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void onImagePressed({required int initialPage}) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return ExpandImages(
+              imageList: widget.imageList, initialPage: initialPage);
+        }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              IconButton.filled(
+                  onPressed: () {
+                    _moveBackward();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios)),
+              Expanded(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      (ResponsiveBreakpoints.of(context).isDesktop
+                          ? 0.6
+                          : 0.45),
+                  child: CarouselView(
+                    itemExtent: _itemExtent,
+                    controller: widget.carouselController,
+                    itemSnapping: true,
+                    onTap: (value) {
+                      onImagePressed(initialPage: value);
+                    },
+                    children: widget.imageList
+                        .map((item) => Hero(
+                              tag: item,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  image: DecorationImage(
+                                    image: AssetImage(item),
+                                    fit: BoxFit
+                                        .contain, // Fill the container while maintaining aspect ratio
+                                  ),
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                ),
+              ),
+              IconButton.filled(
+                  onPressed: () {
+                    _moveForward();
+                  },
+                  icon: const Icon(Icons.arrow_forward_ios)),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
