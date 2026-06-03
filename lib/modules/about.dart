@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio_sabin/helpers/helpers.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -12,18 +13,20 @@ class AboutSection extends StatefulWidget {
 class _AboutSectionState extends State<AboutSection>
     with TickerProviderStateMixin {
   String aboutDescription =
-      "Hey there! I'm Sabin Sajeevan, a driven developer passionate about crafting exceptional digital experiences. With a background in app development and a love for problem-solving, I thrive on turning ideas into reality."
-      "\n\nMy journey into the world of development was sparked by a fascination with technology and a desire to create solutions that make a difference. From designing sleek mobile apps to optimizing user interfaces, I'm committed to delivering top-notch results that exceed expectations."
-      // "\n\nWhen I'm not coding, you can find me on the cricket pitch, smashing shuttlecocks on the badminton court, or hitting the road for an adventure. I'm always up for exploring new places and experiences, which helps me stay inspired and creative."
-      "\n\nI'm excited to collaborate with like-minded individuals to bring innovative ideas to life. Let's team up and create something extraordinary together!";
-
+      "Flutter developer with 7+ years of experience building scalable cross-platform applications across fintech, POS, IoT, automotive, and enterprise domains.\n\n"
+      "Specialized in Flutter architecture, Firebase ecosystems, Riverpod state management, and real-time application development. Strong focus on building production-grade applications with clean architecture, performance optimization, and seamless user experiences.\n\n"
+      "Experienced in developing modern mobile platforms, scalable business solutions, and feature-rich applications across multiple industries while collaborating with cross-functional teams to deliver high-quality products.";
   late AnimationController _aboutController;
   late AnimationController _flutterController;
+  late AnimationController _dartController;
   late AnimationController _firebaseController;
-  late AnimationController _uiuxController;
+  late AnimationController _firestoreController;
   late AnimationController _androidController;
-  late AnimationController _laravelController;
-  late AnimationController _phpController;
+  late AnimationController _riverpodController;
+  late AnimationController _grpcController;
+  late AnimationController _restAPIController;
+  late AnimationController _cicdController;
+  late AnimationController _cloudFunctionController;
   late AnimationController _cricketController;
   late AnimationController _badmintonController;
   late AnimationController _travelController;
@@ -36,15 +39,17 @@ class _AboutSectionState extends State<AboutSection>
         vsync: this, duration: const Duration(milliseconds: 1600));
     _flutterController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
+    _dartController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
     _firebaseController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
-    _uiuxController = AnimationController(
+    _firestoreController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
     _androidController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
-    _laravelController = AnimationController(
+    _riverpodController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
-    _phpController = AnimationController(
+    _grpcController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
     _cricketController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
@@ -53,6 +58,12 @@ class _AboutSectionState extends State<AboutSection>
     _travelController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
     _moviesController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
+    _restAPIController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
+    _cicdController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
+    _cloudFunctionController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1600));
     _aboutController.forward();
     _aboutController.addStatusListener((status) {
@@ -71,14 +82,18 @@ class _AboutSectionState extends State<AboutSection>
     _aboutController.dispose();
     _flutterController.dispose();
     _firebaseController.dispose();
-    _uiuxController.dispose();
+    _firestoreController.dispose();
     _androidController.dispose();
-    _laravelController.dispose();
-    _phpController.dispose();
+    _riverpodController.dispose();
+    _grpcController.dispose();
     _cricketController.dispose();
     _badmintonController.dispose();
     _travelController.dispose();
     _moviesController.dispose();
+    _restAPIController.dispose();
+    _cicdController.dispose();
+    _cloudFunctionController.dispose();
+    _dartController.dispose();
 
     super.dispose();
   }
@@ -137,7 +152,10 @@ class _AboutSectionState extends State<AboutSection>
                       ],
                     ),
                   ),
-                ],
+                ]
+                    .animate(interval: 150.ms, delay: 100.ms)
+                    .fade(duration: 800.ms, curve: Curves.easeOutCubic)
+                    .slideX(begin: -0.1, end: 0, curve: Curves.easeOutCubic),
               ),
             ),
           ),
@@ -164,37 +182,65 @@ class _AboutSectionState extends State<AboutSection>
                       controller: _flutterController,
                     ),
                     Skills(
+                      skill: "Dart",
+                      imagePath: "assets/animation/dart.json",
+                      controller: _dartController,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Skills(
                       skill: "Firebase",
                       imagePath: "assets/animation/firebase.json",
                       controller: _firebaseController,
                     ),
+                    Skills(
+                      skill: "Firestore",
+                      imagePath: "assets/animation/firestore.json",
+                      controller: _firestoreController,
+                    ),
                   ],
                 ),
                 Row(
                   children: [
                     Skills(
-                      skill: "Design UI/UX",
-                      imagePath: "assets/animation/uiux.json",
-                      controller: _uiuxController,
+                      skill: "Riverpod",
+                      imagePath: "assets/animation/riverpod.json",
+                      controller: _riverpodController,
                     ),
                     Skills(
-                      skill: "Java Android",
+                      skill: "gRPC",
+                      imagePath: "assets/animation/grpc.json",
+                      controller: _grpcController,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Skills(
+                      skill: "REST APIs",
+                      imagePath: "assets/animation/rest_api.json",
+                      controller: _restAPIController,
+                    ),
+                    Skills(
+                      skill: "Cloud Functions",
+                      imagePath: "assets/animation/cloud_function.json",
+                      controller: _cloudFunctionController,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Skills(
+                      skill: "CI/CD",
+                      imagePath: "assets/animation/cicd.json",
+                      controller: _cicdController,
+                    ),
+                    Skills(
+                      skill: "Android",
                       imagePath: "assets/animation/android.json",
                       controller: _androidController,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Skills(
-                      skill: "Laravel",
-                      imagePath: "assets/animation/laravel.json",
-                      controller: _laravelController,
-                    ),
-                    Skills(
-                      skill: "PHP",
-                      imagePath: "assets/animation/php.json",
-                      controller: _phpController,
                     ),
                   ],
                 ),
@@ -233,7 +279,10 @@ class _AboutSectionState extends State<AboutSection>
                     ),
                   ],
                 ),
-              ],
+              ]
+                  .animate(interval: 150.ms, delay: 100.ms)
+                  .fade(duration: 800.ms, curve: Curves.easeOutCubic)
+                  .slideX(begin: 0.1, end: 0, curve: Curves.easeOutCubic),
             ),
           ),
         ],
@@ -260,7 +309,10 @@ class Skills extends StatelessWidget {
         child: Row(
           children: [
             buildMaterialIconCircle(
-                imagePath: imagePath, size: 53, controller: controller),
+              imagePath: imagePath,
+              size: 53,
+              controller: controller,
+            ),
             const SizedBox(
               width: 20,
             ),

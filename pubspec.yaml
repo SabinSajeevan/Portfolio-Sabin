@@ -15,6 +15,9 @@ dependencies:
   lottie: ^3.3.2
   flutter_riverpod: ^3.2.1
   zoom_widget: ^2.0.1
+  s_banner: ^3.0.0
+  flutter_animate: ^4.5.2
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +36,4 @@ flutter:
     - assets/images/projects/divine_bullion/
     - assets/images/projects/moneypool/
     - assets/images/projects/more_projects/
+    - assets/images/projects/tabletag/

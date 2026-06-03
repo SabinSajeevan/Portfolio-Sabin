@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:portfolio_sabin/constants/colors.dart';
 import 'package:portfolio_sabin/helpers/helpers.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
+import 'package:s_banner/s_banner.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 class HeaderSection extends StatefulWidget {
   const HeaderSection({super.key});
 
@@ -13,24 +13,22 @@ class HeaderSection extends StatefulWidget {
 class _HeaderSectionState extends State<HeaderSection>
     with TickerProviderStateMixin {
   // --- COPY ---
-  final String _badge = "Available for Senior & Lead Flutter roles";
-
-  final String _headline =
-      "Senior Flutter Developer\n6 Years · 10+ Production Apps Shipped";
+  final String _badge = "Let’s Work Together";
 
   final String _subtext =
-      "I specialise in cross-platform Flutter development across fintech, "
-      "microfinance, real estate, and IoT. My flagship personal project is "
-      "TableTag — a Flutter POS & QR menu system built with Riverpod codegen, "
-      "GoRouter, and Firebase. Open to Senior and Lead Flutter roles, remote or hybrid.";
+      "Specialized in scalable Flutter architecture, Firebase systems, and production-grade cross-platform applications. Built solutions across fintech, POS, IoT, and enterprise domains using Riverpod, GoRouter, gRPC, and clean architecture principles.";
 
   // --- LINKS ---
   final String _cvURL =
-      "https://drive.google.com/file/d/1DRG9q-i84mJOMa0HEkBUmq4FiC4uGMQp/view?usp=sharing";
+      "https://drive.google.com/file/d/1Sq0c758mh6aVto8UHI8WTQM7ne-aupv5/view?usp=sharing";
   final String _githubURL = "https://github.com/sabinsajeevan";
   final String _linkedinURL = "https://linkedin.com/in/sabin-sajeevan";
 
   late AnimationController _welcomeController;
+
+  late AnimationController _cvController;
+  late AnimationController _linkedinController;
+  late AnimationController _githubController;
 
   @override
   void initState() {
@@ -45,18 +43,28 @@ class _HeaderSectionState extends State<HeaderSection>
         });
       }
     });
+
+    _cvController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1000));
+    _linkedinController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
+    _githubController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600));
   }
 
   @override
   void dispose() {
     _welcomeController.dispose();
+    _cvController.dispose();
+    _githubController.dispose();
+    _linkedinController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final isDesktop = !ResponsiveBreakpoints.of(context).smallerThan(DESKTOP);
-
+    double screenWidth = MediaQuery.sizeOf(context).width;
     return Container(
       width: double.infinity,
       margin: blockMargin,
@@ -72,7 +80,7 @@ class _HeaderSectionState extends State<HeaderSection>
             rowFlex: 3,
             columnOrder: 2,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(25, 32, 25, 0),
+              padding: const EdgeInsets.fromLTRB(25, 2, 25, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,9 +117,10 @@ class _HeaderSectionState extends State<HeaderSection>
 
                   // Positioning sub-headline
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding:
+                        EdgeInsets.only(bottom: 8, right: screenWidth * 0.1),
                     child: Text(
-                      "Senior Flutter Developer  ·  6+ Years  ·  25+ Apps Shipped",
+                      "Building production-grade Flutter apps with Firebase, Riverpod, AI workflows & scalable architecture.",
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: primary,
                             fontWeight: FontWeight.w600,
@@ -127,10 +136,9 @@ class _HeaderSectionState extends State<HeaderSection>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 5),
                       decoration: BoxDecoration(
-                        color: primary.withOpacity(0.1),
+                        color: white,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            color: primary.withOpacity(0.35), width: 1),
+                        border: Border.all(color: primary, width: 1),
                       ),
                       child: Text(
                         "● $_badge",
@@ -156,23 +164,34 @@ class _HeaderSectionState extends State<HeaderSection>
                     spacing: 12,
                     runSpacing: 12,
                     children: [
-                      _PrimaryButton(
-                        label: "View Resume",
+                      // _PrimaryButton(
+                      //   label: "View Resume",
+                      //   animationController: _cvController,
+                      //   iconAsset: "assets/animation/scan.json",
+                      //   onTap: () => openUrl(_cvURL, newWindow: true),
+                      // ),
+                      _OutlineButton(
+                        label: "Resume",
+                        animationController: _cvController,
+                        imageSize: 25,
+                        iconAsset: "assets/animation/resume.json",
                         onTap: () => openUrl(_cvURL, newWindow: true),
                       ),
                       _OutlineButton(
                         label: "GitHub",
-                        iconAsset: "assets/images/profile_image.jpg",
+                        animationController: _githubController,
+                        iconAsset: "assets/animation/git.json",
                         onTap: () => openUrl(_githubURL, newWindow: true),
                       ),
                       _OutlineButton(
                         label: "LinkedIn",
-                        iconAsset: "assets/images/profile_image.jpg",
+                        animationController: _linkedinController,
+                        iconAsset: "assets/animation/linkedin.json",
                         onTap: () => openUrl(_linkedinURL, newWindow: true),
                       ),
                     ],
                   ),
-                ],
+                ].animate(interval: 100.ms).fade(duration: 500.ms).slideY(begin: 0.1, end: 0),
               ),
             ),
           ),
@@ -188,12 +207,13 @@ class _HeaderSectionState extends State<HeaderSection>
               clipBehavior: Clip.antiAlias,
               elevation: 10.0,
               child: Image.asset(
-                'assets/images/profile_image.jpg',
+                'assets/images/profile_image.webp',
                 width: 320,
                 height: 320,
                 fit: BoxFit.cover,
+                alignment: AlignmentGeometry.directional(0, -0.6),
               ),
-            ),
+            ).animate().fade(duration: 800.ms).scale(begin: const Offset(0.9, 0.9), curve: Curves.easeOutBack),
           ),
         ],
       ),
@@ -203,57 +223,19 @@ class _HeaderSectionState extends State<HeaderSection>
 
 // ── BUTTON WIDGETS ────────────────────────────────────────────────────────────
 
-class _PrimaryButton extends StatefulWidget {
-  final String label;
-  final VoidCallback onTap;
-
-  const _PrimaryButton({required this.label, required this.onTap});
-
-  @override
-  State<_PrimaryButton> createState() => _PrimaryButtonState();
-}
-
-class _PrimaryButtonState extends State<_PrimaryButton> {
-  bool _hovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),
-          decoration: BoxDecoration(
-            color: _hovered ? primary.withOpacity(0.85) : primary,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            widget.label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _OutlineButton extends StatefulWidget {
   final String label;
   final String? iconAsset;
   final VoidCallback onTap;
+  final double? imageSize;
+  final AnimationController? animationController;
 
-  const _OutlineButton({
-    required this.label,
-    required this.onTap,
-    this.iconAsset,
-  });
+  const _OutlineButton(
+      {required this.label,
+      required this.onTap,
+      this.animationController,
+      this.imageSize,
+      this.iconAsset});
 
   @override
   State<_OutlineButton> createState() => _OutlineButtonState();
@@ -273,24 +255,30 @@ class _OutlineButtonState extends State<_OutlineButton> {
           duration: const Duration(milliseconds: 180),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           decoration: BoxDecoration(
-            color: _hovered ? primary.withOpacity(0.07) : Colors.transparent,
+            color: _hovered ? primary : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: _hovered ? primary : primary.withOpacity(0.4),
-              width: 1,
-            ),
+            // border: Border.all(
+            //   color: _hovered ? primary : primary.withValues(alpha: 0.4),
+            //   width: 1,
+            // ),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.iconAsset != null) ...[
-                Image.asset(widget.iconAsset!, width: 16, height: 16),
+                buildMaterialIconCircle(
+                  imagePath: widget.iconAsset,
+                  size: 50,
+                  imageSize: widget.imageSize ?? 40,
+                  controller: widget.animationController,
+                ),
+                // Image.asset(widget.iconAsset!, width: 16, height: 16),
                 const SizedBox(width: 8),
               ],
               Text(
                 widget.label,
                 style: TextStyle(
-                  color: primary,
+                  color: _hovered ? white : primary,
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                 ),

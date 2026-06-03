@@ -133,7 +133,7 @@ class HomeState extends ConsumerState<Home> {
         ),
         body: ListView(
           controller: _controller,
-          shrinkWrap: true,
+          cacheExtent: 0.0,
           children: [
             SizedBox(
               height: screenHeight * 0.1,

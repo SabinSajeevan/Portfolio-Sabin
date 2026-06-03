@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_sabin/constants/colors.dart';
 import 'package:portfolio_sabin/helpers/helpers.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -277,7 +278,7 @@ class _ContactSectionState extends State<ContactSection>
                               ])))))
             ],
           ),
-        ]));
+        ].animate(interval: 150.ms, delay: 100.ms).fade(duration: 800.ms, curve: Curves.easeOutCubic).slideY(begin: 0.1, end: 0, curve: Curves.easeOutCubic)));
   }
 }
 
