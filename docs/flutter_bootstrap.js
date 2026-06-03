@@ -50,7 +50,7 @@ loadingDiv.appendChild(loaderDiv);
 // Customize the app initialization process
 _flutter.loader.load({
     serviceWorkerSettings: {
-        serviceWorkerVersion: "1036957684" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */,
+        serviceWorkerVersion: "2411093086" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */,
     },
     config: {
         canvasKitBaseUrl: 'canvaskit/',
